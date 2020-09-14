@@ -1,0 +1,48 @@
+---
+title: "Quiz 1 - R Programming"
+output:
+  html_notebook: default
+  quiz-1: default
+---
+##### Load dataset.
+```{r}
+file <- './hw1_data.csv'
+ds <- read.csv(file)
+print(ds)
+```
+##### Fetch 47th row.
+```{r}
+ds_47 <- ds[47,]
+print(ds_47)
+```
+##### Get values from Ozone column to determine count of missing values in Ozone Column.
+```{r}
+ds_ozone <- ds$Ozone
+ds_na_ozone <- ds_ozone[is.na(ds_ozone)]
+count_na_ozone <- sum(is.na(ds_na_ozone))
+cat("Count of missing values frequency in Ozone column: ", count_na_ozone)
+```
+##### Filter values from dataframe to find mean for Solar.R column.
+```{r}
+filtered_ds <- ds[ds$Ozone > 31 & ds$Temp > 90,]
+filtered_ds <- na.omit(filtered_ds)
+col_solar_r <- filtered_ds$Solar.R
+mean_solar_r <- mean(col_solar_r)
+cat("Solar.R mean: ", mean_solar_r)
+```
+##### Filter values (month = 6) from dataframe to find mean of Temp column.
+```{r}
+filtered_ds <- ds[ds$Month == 6,]
+filtered_ds <- na.omit(filtered_ds)
+col_temp <- filtered_ds$Temp
+mean_temp <- mean(col_temp)
+cat("Temp mean: ", mean_temp)
+```
+##### Filter values (month = 6) from dataframe to find max of Ozone column.
+```{r}
+filtered_ds <- ds[ds$Month == 5,]
+filtered_ds <- na.omit(filtered_ds)
+col_ozone <- filtered_ds$Ozone
+max_ozone <- max(col_ozone)
+cat("Ozone max: ", max_ozone)
+```
